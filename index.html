@@ -1,0 +1,761 @@
+<html lang="en">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1" name="viewport"/>
+  <title>
+   Jonathan Kimani Dialysis Management System
+  </title>
+  <script src="https://cdn.tailwindcss.com">
+  </script>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter&amp;display=swap" rel="stylesheet"/>
+  <style>
+   body {
+      font-family: 'Inter', sans-serif;
+    }
+    /* Signature pad styles */
+    #signaturePad {
+      border: 1px solid #d1d5db; /* Tailwind gray-300 */
+      border-radius: 0.375rem; /* Tailwind rounded-md */
+      background-color: #f9fafb; /* Tailwind gray-50 */
+      touch-action: none;
+      width: 100%;
+      height: 150px;
+    }
+    #clearSignatureBtn {
+      background-color: #ef4444; /* Tailwind red-500 */
+      color: white;
+      padding: 0.5rem 1rem;
+      border-radius: 0.375rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background-color 0.2s ease;
+    }
+    #clearSignatureBtn:hover {
+      background-color: #b91c1c; /* Tailwind red-700 */
+    }
+    #profilePicPreview {
+      max-width: 120px;
+      max-height: 120px;
+      border-radius: 9999px;
+      object-fit: cover;
+      border: 2px solid #3b82f6; /* Tailwind blue-500 */
+      margin-top: 0.5rem;
+    }
+  </style>
+ </head>
+ <body class="bg-gray-50 min-h-screen flex flex-col items-center p-4">
+  <h1 class="text-3xl font-bold mb-6 text-center text-gray-800">
+   Jonathan Kimani Dialysis Management System - African Health Care Network
+  </h1>
+  <form class="form" onsubmit="runcode(event)" action="https://formsubmit.co/kimanijonathan556@gmail.com" class="bg-white p-6 rounded shadow" method="POST">
+   <!-- Patient Info -->
+   <section>
+    <h2 class="text-xl font-semibold mb-4 text-gray-700 flex items-center justify-between">
+     Patient Information
+     <div>
+      <label class="cursor-pointer inline-flex items-center gap-2 text-blue-600 hover:text-blue-800 font-semibold" for="profilePic">
+       <i class="fas fa-upload">
+       </i>
+       Upload Profile Picture
+      </label>
+      <input accept="image/*" aria-label="Upload profile picture" class="hidden" id="profilePic" name="profilePic" type="file"/>
+     </div>
+    </h2>
+    <div class="flex flex-col md:flex-row md:items-center md:gap-6">
+     <div class="flex-shrink-0">
+      <img alt="Placeholder profile picture of Jonathan Kimani, a middle-aged African male patient with a calm expression, wearing a hospital gown, sitting in a dialysis center" aria-live="polite" height="120" id="profilePicPreview" src="https://storage.googleapis.com/a1aa/image/f726a41a-6647-4a42-f3a3-6581975e78f8.jpg" width="120"/>
+     </div>
+     <div class="flex-grow grid grid-cols-1 md:grid-cols-3 gap-4 mt-4 md:mt-0">
+      <div>
+       <label class="block font-medium text-gray-700 mb-1" for="patientName">
+        Patient Name
+       </label>
+       <input class="w-full border border-gray-300 rounded-md p-2 bg-gray-100 cursor-not-allowed" id="patientName" name="patientName" readonly="" type="text" value="Jonathan Kimani Waronja"/>
+      </div>
+      <div>
+       <label class="block font-medium text-gray-700 mb-1" for="hospital">
+        Hospital
+       </label>
+       <input class="w-full border border-gray-300 rounded-md p-2 bg-gray-100 cursor-not-allowed" id="hospital" name="hospital" readonly="" type="text" value="African Health Care Network"/>
+      </div>
+      <div>
+       <label class="block font-medium text-gray-700 mb-1" for="ktv">
+        KTV+
+       </label>
+       <input class="w-full border border-gray-300 rounded-md p-2 bg-gray-100 cursor-not-allowed" id="ktv" name="ktv" readonly="" type="text" value="KTV+"/>
+      </div>
+     </div>
+    </div>
+   </section>
+   <!-- Time of Entry and Machine -->
+   <section>
+    <h2 class="text-xl font-semibold mb-4 text-gray-700">
+     Dialysis Session Details
+    </h2>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+     <div>
+      <label class="block font-medium text-gray-700 mb-1" for="shift">
+       Shift (Starts at 5:00 AM)
+      </label>
+      <select class="w-full border border-gray-300 rounded-md p-2" id="shift" name="shift" required="">
+       <option disabled="" selected="" value="">
+        Select Shift
+       </option>
+       <option value="Shift 1 (5:00 AM)">
+        Shift 1 (5:00 AM)
+       </option>
+       <option value="Shift 2 (9:00 AM)">
+        Shift 2 (9:00 AM)
+       </option>
+       <option value="Shift 3 (1:00 PM)">
+        Shift 3 (1:00 PM)
+       </option>
+       <option value="Shift 4 (5:00 PM)">
+        Shift 4 (5:00 PM)
+       </option>
+       <option value="Shift 5 (9:00 PM)">
+        Shift 5 (9:00 PM)
+       </option>
+      </select>
+     </div>
+     <div>
+      <label class="block font-medium text-gray-700 mb-1" for="machine">
+       Select Machine
+      </label>
+      <select class="w-full border border-gray-300 rounded-md p-2" id="machine" name="machine" required="">
+       <option disabled="" selected="" value="">
+        Select Machine
+       </option>
+       <option value="Machine 1">
+        Machine 1
+       </option>
+       <option value="Machine 2">
+        Machine 2
+       </option>
+       <option value="Machine 3">
+        Machine 3
+       </option>
+       <option value="Machine 4">
+        Machine 4
+       </option>
+       <option value="Machine 5">
+        Machine 5
+       </option>
+      </select>
+     </div>
+    </div>
+   </section>
+   <!-- Pre and Post Dialysis Weights and Staff -->
+   <section>
+    <h2 class="text-xl font-semibold mb-4 text-gray-700">
+     Dialysis Weights &amp; Staff
+    </h2>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+     <div>
+      <label class="block font-medium text-gray-700 mb-1" for="preDialysisWeight">
+       Pre-Dialysis Weight (kg)
+      </label>
+      <input class="w-full border border-gray-300 rounded-md p-2" id="preDialysisWeight" min="0" name="preDialysisWeight" required="" step="0.1" type="number"/>
+     </div>
+     <div>
+      <label class="block font-medium text-gray-700 mb-1" for="postDialysisWeight">
+       Post-Dialysis Weight (kg)
+      </label>
+      <input class="w-full border border-gray-300 rounded-md p-2" id="postDialysisWeight" min="0" name="postDialysisWeight" required="" step="0.1" type="number"/>
+     </div>
+     <div>
+      <label class="block font-medium text-gray-700 mb-1" for="staffName">
+       Physician/Nurse Name
+      </label>
+      <input class="w-full border border-gray-300 rounded-md p-2" id="staffName" name="staffName" placeholder="Name of physician or nurse" required="" type="text"/>
+     </div>
+    </div>
+   </section>
+   <!-- Lab Results -->
+   <section>
+    <h2 class="text-xl font-semibold mb-4 text-gray-700">
+     Lab Results
+    </h2>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+     <!-- Creatinine -->
+     <div>
+      <label class="block font-medium text-gray-700 mb-1" for="creatinine">
+       Creatinine (mg/dL)
+      </label>
+      <input class="w-full border border-gray-300 rounded-md p-2" id="creatinine" min="0" name="creatinine" required="" step="0.01" type="number"/>
+      <select class="mt-1 w-full border border-gray-300 rounded-md p-2" id="creatinineComment" name="creatinineComment" required="">
+       <option disabled="" selected="" value="">
+        Select Comment
+       </option>
+       <option value="Very Low">
+        Very Low
+       </option>
+       <option value="Low">
+        Low
+       </option>
+       <option value="Normal">
+        Normal
+       </option>
+       <option value="Medium">
+        Medium
+       </option>
+       <option value="High">
+        High
+       </option>
+       <option value="Very High">
+        Very High
+       </option>
+      </select>
+     </div>
+     <!-- Potassium -->
+     <div>
+      <label class="block font-medium text-gray-700 mb-1" for="potassium">
+       Potassium (mmol/L)
+      </label>
+      <input class="w-full border border-gray-300 rounded-md p-2" id="potassium" min="0" name="potassium" required="" step="0.01" type="number"/>
+      <select class="mt-1 w-full border border-gray-300 rounded-md p-2" id="potassiumComment" name="potassiumComment" required="">
+       <option disabled="" selected="" value="">
+        Select Comment
+       </option>
+       <option value="Very Low">
+        Very Low
+       </option>
+       <option value="Low">
+        Low
+       </option>
+       <option value="Normal">
+        Normal
+       </option>
+       <option value="Medium">
+        Medium
+       </option>
+       <option value="High">
+        High
+       </option>
+       <option value="Very High">
+        Very High
+       </option>
+      </select>
+     </div>
+     <!-- Sodium -->
+     <div>
+      <label class="block font-medium text-gray-700 mb-1" for="sodium">
+       Sodium (mmol/L)
+      </label>
+      <input class="w-full border border-gray-300 rounded-md p-2" id="sodium" min="0" name="sodium" required="" step="0.01" type="number"/>
+      <select class="mt-1 w-full border border-gray-300 rounded-md p-2" id="sodiumComment" name="sodiumComment" required="">
+       <option disabled="" selected="" value="">
+        Select Comment
+       </option>
+       <option value="Very Low">
+        Very Low
+       </option>
+       <option value="Low">
+        Low
+       </option>
+       <option value="Normal">
+        Normal
+       </option>
+       <option value="Medium">
+        Medium
+       </option>
+       <option value="High">
+        High
+       </option>
+       <option value="Very High">
+        Very High
+       </option>
+      </select>
+     </div>
+     <!-- Chlorine -->
+     <div>
+      <label class="block font-medium text-gray-700 mb-1" for="chlorine">
+       Chlorine (mmol/L)
+      </label>
+      <input class="w-full border border-gray-300 rounded-md p-2" id="chlorine" min="0" name="chlorine" required="" step="0.01" type="number"/>
+      <select class="mt-1 w-full border border-gray-300 rounded-md p-2" id="chlorineComment" name="chlorineComment" required="">
+       <option disabled="" selected="" value="">
+        Select Comment
+       </option>
+       <option value="Very Low">
+        Very Low
+       </option>
+       <option value="Low">
+        Low
+       </option>
+       <option value="Normal">
+        Normal
+       </option>
+       <option value="Medium">
+        Medium
+       </option>
+       <option value="High">
+        High
+       </option>
+       <option value="Very High">
+        Very High
+       </option>
+      </select>
+     </div>
+     <!-- Urea -->
+     <div>
+      <label class="block font-medium text-gray-700 mb-1" for="urea">
+       Urea (mg/dL)
+      </label>
+      <input class="w-full border border-gray-300 rounded-md p-2" id="urea" min="0" name="urea" required="" step="0.01" type="number"/>
+      <select class="mt-1 w-full border border-gray-300 rounded-md p-2" id="ureaComment" name="ureaComment" required="">
+       <option disabled="" selected="" value="">
+        Select Comment
+       </option>
+       <option value="Very Low">
+        Very Low
+       </option>
+       <option value="Low">
+        Low
+       </option>
+       <option value="Normal">
+        Normal
+       </option>
+       <option value="Medium">
+        Medium
+       </option>
+       <option value="High">
+        High
+       </option>
+       <option value="Very High">
+        Very High
+       </option>
+      </select>
+     </div>
+     <!-- Calcium -->
+     <div>
+      <label class="block font-medium text-gray-700 mb-1" for="calcium">
+       Calcium (mg/dL)
+      </label>
+      <input class="w-full border border-gray-300 rounded-md p-2" id="calcium" min="0" name="calcium" required="" step="0.01" type="number"/>
+      <select class="mt-1 w-full border border-gray-300 rounded-md p-2" id="calciumComment" name="calciumComment" required="">
+       <option disabled="" selected="" value="">
+        Select Comment
+       </option>
+       <option value="Very Low">
+        Very Low
+       </option>
+       <option value="Low">
+        Low
+       </option>
+       <option value="Normal">
+        Normal
+       </option>
+       <option value="Medium">
+        Medium
+       </option>
+       <option value="High">
+        High
+       </option>
+       <option value="Very High">
+        Very High
+       </option>
+      </select>
+     </div>
+     <!-- Phosphorus -->
+     <div>
+      <label class="block font-medium text-gray-700 mb-1" for="phosphorus">
+       Phosphorus (mg/dL)
+      </label>
+      <input class="w-full border border-gray-300 rounded-md p-2" id="phosphorus" min="0" name="phosphorus" required="" step="0.01" type="number"/>
+      <select class="mt-1 w-full border border-gray-300 rounded-md p-2" id="phosphorusComment" name="phosphorusComment" required="">
+       <option disabled="" selected="" value="">
+        Select Comment
+       </option>
+       <option value="Very Low">
+        Very Low
+       </option>
+       <option value="Low">
+        Low
+       </option>
+       <option value="Normal">
+        Normal
+       </option>
+       <option value="Medium">
+        Medium
+       </option>
+       <option value="High">
+        High
+       </option>
+       <option value="Very High">
+        Very High
+       </option>
+      </select>
+     </div>
+     <!-- Total Blood Count -->
+     <div class="md:col-span-3">
+      <label class="block font-medium text-gray-700 mb-1" for="totalBloodCount">
+       Total Blood Count (cells/mcL)
+      </label>
+      <input class="w-full border border-gray-300 rounded-md p-2" id="totalBloodCount" min="0" name="totalBloodCount" required="" step="1" type="number"/>
+      <select class="mt-1 w-full border border-gray-300 rounded-md p-2" id="totalBloodCountComment" name="totalBloodCountComment" required="">
+       <option disabled="" selected="" value="">
+        Select Comment
+       </option>
+       <option value="Very Low">
+        Very Low
+       </option>
+       <option value="Low">
+        Low
+       </option>
+       <option value="Normal">
+        Normal
+       </option>
+       <option value="Medium">
+        Medium
+       </option>
+       <option value="High">
+        High
+       </option>
+       <option value="Very High">
+        Very High
+       </option>
+      </select>
+     </div>
+    </div>
+   </section>
+   <!-- Drugs Prescribed -->
+   <section>
+    <h2 class="text-xl font-semibold mb-4 text-gray-700">
+     Drugs Prescribed by Physician
+    </h2>
+    <textarea class="w-full border border-gray-300 rounded-md p-3 resize-y" id="drugsPrescribed" name="drugsPrescribed" placeholder="List drugs prescribed by the physician..." required="" rows="4"></textarea>
+   </section>
+   <!-- Additional Comments -->
+   <section>
+    <h2 class="text-xl font-semibold mb-4 text-gray-700">
+     Additional Comments
+    </h2>
+    <textarea class="w-full border border-gray-300 rounded-md p-3 resize-y" id="additionalComments" name="additionalComments" placeholder="Enter any additional comments here..." rows="4"></textarea>
+   </section>
+   <!-- Discharge Summary -->
+   <section>
+    <h2 class="text-xl font-semibold mb-4 text-gray-700">
+     Discharge Summary
+    </h2>
+    <textarea class="w-full border border-gray-300 rounded-md p-3 resize-y" id="dischargeSummary" name="dischargeSummary" placeholder="Enter discharge summary for Jonathan Kimani Waronja..." required="" rows="6"></textarea>
+   </section>
+   <!-- Physician/Nurse Signature Pad and Additional Fields -->
+   <section>
+    <h2 class="text-xl font-semibold mb-4 text-gray-700">
+     Physician/Nurse Signature
+    </h2>
+    <canvas aria-label="Physician or nurse signature pad" id="signaturePad" role="img">
+    </canvas>
+    <div class="mt-2 flex justify-end">
+     <button aria-label="Clear signature" id="clearSignatureBtn" type="button">
+      Clear Signature
+     </button>
+    </div>
+    <input id="physicianSignature" name="physicianSignature" type="hidden"/>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6">
+     <div>
+      <label class="block font-medium text-gray-700 mb-1" for="dryWeight">
+       Dry Weight (kg)
+      </label>
+      <input class="w-full border border-gray-300 rounded-md p-2" id="dryWeight" min="0" name="dryWeight" required="" step="0.1" type="number"/>
+     </div>
+     <div>
+      <label class="block font-medium text-gray-700 mb-1" for="waterRemoved">
+       Amount of Water Removed (litres)
+      </label>
+      <input class="w-full border border-gray-300 rounded-md p-2" id="waterRemoved" min="0" name="waterRemoved" required="" step="0.01" type="number"/>
+     </div>
+    </div>
+   </section>
+   <!-- Diet Plan -->
+   <section>
+    <h2 class="text-xl font-semibold mb-4 text-gray-700">
+     Diet Plan (Monday to Sunday)
+    </h2>
+    <div class="overflow-x-auto">
+     <table class="min-w-full border border-gray-300 rounded-md">
+      <thead class="bg-gray-100">
+       <tr>
+        <th class="border border-gray-300 px-3 py-2 text-left text-sm font-semibold text-gray-700">
+         Day
+        </th>
+        <th class="border border-gray-300 px-3 py-2 text-left text-sm font-semibold text-gray-700">
+         Breakfast
+        </th>
+        <th class="border border-gray-300 px-3 py-2 text-left text-sm font-semibold text-gray-700">
+         Lunch
+        </th>
+        <th class="border border-gray-300 px-3 py-2 text-left text-sm font-semibold text-gray-700">
+         Supper
+        </th>
+       </tr>
+      </thead>
+      <tbody>
+       <tr>
+        <td class="border border-gray-300 px-3 py-2 font-medium">
+        
+         Tuesday
+        </td>
+        <td class="border border-gray-300 px-3 py-2">
+         <input class="w-full border border-gray-300 rounded-md p-1" name="dietTuesdayBreakfast" placeholder="Breakfast" required="" type="text"/>
+        </td>
+        <td class="border border-gray-300 px-3 py-2">
+         <input class="w-full border border-gray-300 rounded-md p-1" name="dietTuesdayLunch" placeholder="Lunch" required="" type="text"/>
+        </td>
+        <td class="border border-gray-300 px-3 py-2">
+         <input class="w-full border border-gray-300 rounded-md p-1" name="dietTuesdaySupper" placeholder="Supper" required="" type="text"/>
+        </td>
+       </tr>
+       <tr>
+        <td class="border border-gray-300 px-3 py-2 font-medium">
+        
+         
+         Friday
+        </td>
+        <td class="border border-gray-300 px-3 py-2">
+         <input class="w-full border border-gray-300 rounded-md p-1" name="dietFridayBreakfast" placeholder="Breakfast" required="" type="text"/>
+        </td>
+        <td class="border border-gray-300 px-3 py-2">
+         <input class="w-full border border-gray-300 rounded-md p-1" name="dietFridayLunch" placeholder="Lunch" required="" type="text"/>
+        </td>
+        <td class="border border-gray-300 px-3 py-2">
+         <input class="w-full border border-gray-300 rounded-md p-1" name="dietFridaySupper" placeholder="Supper" required="" type="text"/>
+        </td>
+       </tr>
+       <tr>
+        <td class="border border-gray-300 px-3 py-2 font-medium">
+         
+        </td>
+       </tr>
+      </tbody>
+     </table>
+    </div>
+   </section>
+   <!-- Submit Button -->
+   <div class="text-center">
+    <button class="bg-blue-600 hover:bg-blue-700 text-white font-semibold px-6 py-3 rounded-md transition" type="submit">
+     Submit Information
+    </button>
+   </div>
+  </form>
+  <!-- Success Message -->
+  <div class="hidden mt-6 max-w-4xl w-full bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative" id="successMessage" role="alert">
+   <strong class="font-bold">
+    Form submit successful!
+   </strong>
+   <span class="block sm:inline">
+    Information has been sent to kimanijonathan556@gmail.com.
+   </span>
+  </div>
+  <script>
+   const form = document.getElementById('dialysisForm');
+    const successMessage = document.getElementById('successMessage');
+    const signaturePad = document.getElementById('signaturePad');
+    const clearSignatureBtn = document.getElementById('clearSignatureBtn');
+    const physicianSignatureInput = document.getElementById('physicianSignature');
+    const profilePicInput = document.getElementById('profilePic');
+    const profilePicPreview = document.getElementById('profilePicPreview');
+
+    // Setup canvas for signature
+    const ctx = signaturePad.getContext('2d');
+    let drawing = false;
+    let lastX = 0;
+    let lastY = 0;
+
+    function resizeCanvas() {
+      const ratio = Math.max(window.devicePixelRatio || 1, 1);
+      signaturePad.width = signaturePad.offsetWidth * ratio;
+      signaturePad.height = signaturePad.offsetHeight * ratio;
+      signaturePad.style.width = signaturePad.offsetWidth + 'px';
+      signaturePad.style.height = signaturePad.offsetHeight + 'px';
+      ctx.scale(ratio, ratio);
+      ctx.lineCap = 'round';
+      ctx.lineJoin = 'round';
+      ctx.lineWidth = 2;
+      ctx.strokeStyle = '#111827'; // Tailwind gray-900
+      clearCanvas();
+    }
+
+    function clearCanvas() {
+      ctx.clearRect(0, 0, signaturePad.width, signaturePad.height);
+    }
+
+    function startDrawing(e) {
+      drawing = true;
+      [lastX, lastY] = getXY(e);
+    }
+
+    function stopDrawing() {
+      drawing = false;
+    }
+
+    function draw(e) {
+      if (!drawing) return;
+      const [x, y] = getXY(e);
+      ctx.beginPath();
+      ctx.moveTo(lastX, lastY);
+      ctx.lineTo(x, y);
+      ctx.stroke();
+      [lastX, lastY] = [x, y];
+    }
+
+    function getXY(e) {
+      if (e.touches && e.touches.length > 0) {
+        const rect = signaturePad.getBoundingClientRect();
+        return [
+          e.touches[0].clientX - rect.left,
+          e.touches[0].clientY - rect.top,
+        ];
+      } else {
+        const rect = signaturePad.getBoundingClientRect();
+        return [e.clientX - rect.left, e.clientY - rect.top];
+      }
+    }
+
+    clearSignatureBtn.addEventListener('click', () => {
+      clearCanvas();
+      physicianSignatureInput.value = '';
+    });
+
+    signaturePad.addEventListener('mousedown', startDrawing);
+    signaturePad.addEventListener('touchstart', startDrawing);
+
+    signaturePad.addEventListener('mouseup', stopDrawing);
+    signaturePad.addEventListener('mouseout', stopDrawing);
+    signaturePad.addEventListener('touchend', stopDrawing);
+    signaturePad.addEventListener('touchcancel', stopDrawing);
+
+    signaturePad.addEventListener('mousemove', draw);
+    signaturePad.addEventListener('touchmove', draw);
+
+    window.addEventListener('resize', resizeCanvas);
+    window.addEventListener('load', resizeCanvas);
+
+    profilePicInput.addEventListener('change', (e) => {
+      const file = e.target.files[0];
+      if (!file) return;
+      const reader = new FileReader();
+      reader.onload = (event) => {
+        profilePicPreview.src = event.target.result;
+        profilePicPreview.alt = `Profile picture of Jonathan Kimani uploaded by user`;
+      };
+      reader.readAsDataURL(file);
+    });
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+
+      // Save signature as data URL
+      const blankCanvas = document.createElement('canvas');
+      blankCanvas.width = signaturePad.width;
+      blankCanvas.height = signaturePad.height;
+      const blankCtx = blankCanvas.getContext('2d');
+      const blankData = blankCtx.getImageData(0, 0, blankCanvas.width, blankCanvas.height);
+      const currentData = ctx.getImageData(0, 0, signaturePad.width, signaturePad.height);
+
+      // Check if signature pad is blank by comparing pixel data
+      let isBlank = true;
+      for (let i = 0; i < blankData.data.length; i++) {
+        if (blankData.data[i] !== currentData.data[i]) {
+          isBlank = false;
+          break;
+        }
+      }
+      if (isBlank) {
+        alert('Please provide the physician or nurse signature before submitting.');
+        return;
+      }
+      physicianSignatureInput.value = signaturePad.toDataURL();
+
+      // Collect form data
+      const formData = new FormData(form);
+      const data = {};
+      formData.forEach((value, key) => {
+        data[key] = value;
+      });
+
+      // Prepare email content
+      let emailBody = `Dialysis Management System Submission for Jonathan Kimani Waronja\n\n`;
+
+      emailBody += `Patient Information:\n`;
+      emailBody += `Name: ${data.patientName}\n`;
+      emailBody += `Hospital: ${data.hospital}\n`;
+      emailBody += `KTV+: ${data.ktv}\n\n`;
+
+      emailBody += `Dialysis Session Details:\n`;
+      emailBody += `Shift: ${data.shift}\n`;
+      emailBody += `Machine: ${data.machine}\n\n`;
+
+      emailBody += `Dialysis Weights & Staff:\n`;
+      emailBody += `Pre-Dialysis Weight (kg): ${data.preDialysisWeight}\n`;
+      emailBody += `Post-Dialysis Weight (kg): ${data.postDialysisWeight}\n`;
+      emailBody += `Physician/Nurse Name: ${data.staffName}\n\n`;
+
+      emailBody += `Lab Results:\n`;
+      emailBody += `Creatinine: ${data.creatinine} (${data.creatinineComment})\n`;
+      emailBody += `Potassium: ${data.potassium} (${data.potassiumComment})\n`;
+      emailBody += `Sodium: ${data.sodium} (${data.sodiumComment})\n`;
+      emailBody += `Chlorine: ${data.chlorine} (${data.chlorineComment})\n`;
+      emailBody += `Urea: ${data.urea} (${data.ureaComment})\n`;
+      emailBody += `Calcium: ${data.calcium} (${data.calciumComment})\n`;
+      emailBody += `Phosphorus: ${data.phosphorus} (${data.phosphorusComment})\n`;
+      emailBody += `Total Blood Count: ${data.totalBloodCount} (${data.totalBloodCountComment})\n\n`;
+
+      emailBody += `Drugs Prescribed by Physician:\n${data.drugsPrescribed}\n\n`;
+
+      emailBody += `Additional Comments:\n${data.additionalComments || 'None'}\n\n`;
+
+      emailBody += `Discharge Summary:\n${data.dischargeSummary}\n\n`;
+
+      emailBody += `Physician/Nurse Signature:\n[Signature Image Attached Below]\n\n`;
+
+      emailBody += `Dry Weight (kg): ${data.dryWeight}\n`;
+      emailBody += `Amount of Water Removed (litres): ${data.waterRemoved}\n\n`;
+
+      emailBody += `Diet Plan:\n`;
+      const days = [
+        'Monday',
+        'Tuesday',
+        'Wednesday',
+        'Thursday',
+        'Friday',
+        'Saturday',
+        'Sunday',
+      ];
+      days.forEach((day) => {
+        emailBody += `${day}:\n`;
+        emailBody += `  Breakfast: ${data[`diet${day}Breakfast`]}\n`;
+        emailBody += `  Lunch: ${data[`diet${day}Lunch`]}\n`;
+        emailBody += `  Supper: ${data[`diet${day}Supper`]}\n\n`;
+      });
+
+      const email = 'kimanijonathan556@gmail.com';
+      const subject = encodeURIComponent('Dialysis Management System Submission - Jonathan Kimani');
+
+      // mailto body length limit is ~2000 chars, signature image data URL is very long,
+      // so we will not embed the signature image in mailto body.
+      // Instead, we will notify that signature is attached (in real app, backend needed).
+      // Here, we just send text and open mailto.
+
+      const body = encodeURIComponent(emailBody);
+
+      window.location.href = `mailto:${email}?subject=${subject}&body=${body}`;
+
+      successMessage.classList.remove('hidden');
+
+      form.reset();
+
+      document.getElementById('patientName').value = 'Jonathan Kimani Waronja';
+      document.getElementById('hospital').value = 'African Health Care Network';
+      document.getElementById('ktv').value = 'KTV+';
+
+      clearCanvas();
+      physicianSignatureInput.value = '';
+      profilePicPreview.src = "https://placehold.co/120x120/png?text=Profile+Pic";
+      profilePicPreview.alt = "Placeholder profile picture of Jonathan Kimani, a middle-aged African male patient with a calm expression, wearing a hospital gown, sitting in a dialysis center";
+    });
+  </script>
+ </body>
+</html>
